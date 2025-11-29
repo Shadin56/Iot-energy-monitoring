@@ -161,52 +161,50 @@ if st.session_state['page'] == 'home':
                     offline_count = stats['offline']
                     
                     if total == 0:
-                        bg_color = "#fbfbfc"
-                        border_color = "#676f75"
+                        bg_color = "#e2e3e5"
+                        border_color = "#6c757d"
                     elif offline_count == total:
-                        bg_color = "#c5c5c5"
-                        border_color = "#616970"
+                        bg_color = "#e2e3e5"
+                        border_color = "#6c757d"
                     elif on_count > 0:
-                        bg_color = "#ceebd5"
-                        border_color = "#25b948"
+                        bg_color = "#d4edda"
+                        border_color = "#28a745"
                     else:
-                        bg_color = "#f5c8cc"
-                        border_color = "#e02336"
+                        bg_color = "#f8d7da"
+                        border_color = "#dc3545"
                     
                     st.markdown(f"""
                         <div style="
                             background-color: {bg_color};
                             border: 3px solid {border_color};
-                            border-radius: 16px;
-                            padding: 25px 20px;
+                            border-radius: 10px;
+                            padding: 30px 20px;
                             text-align: center;
                             min-height: 200px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            margin-bottom: 15px;
-                            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-                            transition: all 0.3s ease;
+                            margin-bottom: 10px;
                         ">
-                            <div style="font-size: 2.5em; margin-bottom: 8px;">🚪</div>
-                            <div style="font-size: 1.4em; font-weight: 700; color: #1e293b; margin-bottom: 20px;">{classroom_name}</div>
-                            <div style="display: flex; gap: 28px; justify-content: center; margin-top: 10px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🚪</div>
+                            <div style="font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 15px;">{classroom_name}</div>
+                            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
                                 <div style="text-align: center;">
-                                    <div style="font-size: 1.6em; font-weight: bold; color: #0f172a;">{total}</div>
-                                    <div style="font-size: 0.85em; color: #475569; font-weight: 500;">Total</div>
+                                    <div style="font-size: 1.5em; font-weight: bold; color: #333;">{total}</div>
+                                    <div style="font-size: 0.8em; color: #666;">Total</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 1.6em; font-weight: bold; color: #00c853;">🟢 {on_count}</div>
-                                    <div style="font-size: 0.85em; color: #475569; font-weight: 500;">ON</div>
+                                    <div style="font-size: 1.5em; font-weight: bold; color: #28a745;">🟢 {on_count}</div>
+                                    <div style="font-size: 0.8em; color: #666;">ON</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 1.6em; font-weight: bold; color: #ff3b30;">🔴 {off_count}</div>
-                                    <div style="font-size: 0.85em; color: #475569; font-weight: 500;">OFF</div>
+                                    <div style="font-size: 1.5em; font-weight: bold; color: #dc3545;">🔴 {off_count}</div>
+                                    <div style="font-size: 0.8em; color: #666;">OFF</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 1.6em; font-weight: bold; color: #6b7280;">⚫ {offline_count}</div>
-                                    <div style="font-size: 0.85em; color: #475569; font-weight: 500;">Offline</div>
+                                    <div style="font-size: 1.5em; font-weight: bold; color: #6c757d;">⚫ {offline_count}</div>
+                                    <div style="font-size: 0.8em; color: #666;">Offline</div>
                                 </div>
                             </div>
                         </div>
@@ -223,20 +221,20 @@ if st.session_state['page'] == 'home':
                 elif classroom_idx == classroom_count:
                     st.markdown("""
                         <div style="
-                            background-color: #e0f2fe;
-                            border: 3px dashed #38bdf8;
-                            border-radius: 14px;
-                            padding: 35px 20px;
+                            background-color: #e7f3ff;
+                            border: 3px dashed #007bff;
+                            border-radius: 10px;
+                            padding: 30px 20px;
                             text-align: center;
                             min-height: 200px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            margin-bottom: 15px;
+                            margin-bottom: 10px;
                         ">
-                            <div style="font-size: 3.5em; color: #0284c7; margin-bottom: 12px;">+</div>
-                            <div style="font-size: 1.3em; font-weight: 700; color: #0369a1;">Add New Classroom</div>
+                            <div style="font-size: 3em; color: #007bff; margin-bottom: 10px;">+</div>
+                            <div style="font-size: 1.2em; font-weight: bold; color: #007bff;">Add New Classroom</div>
                         </div>
                     """, unsafe_allow_html=True)
                     
@@ -269,7 +267,7 @@ elif st.session_state['page'] == 'add_classroom':
             if classroom_name:
                 try:
                     add_classroom(classroom_name)
-                    st.success(f"Classroom '{classroom_name}' added successfully!")
+                    st.success(f"✅ Classroom '{classroom_name}' added successfully!")
                     time.sleep(1)
                     st.session_state['page'] = 'home'
                     st.rerun()
@@ -348,19 +346,19 @@ elif st.session_state['page'] == 'classroom':
                         <div style="
                             background-color: {bg_color};
                             border: 3px solid {border_color};
-                            border-radius: 14px;
-                            padding: 35px 20px;
+                            border-radius: 10px;
+                            padding: 40px 20px;
                             text-align: center;
-                            min-height: 200px;
+                            min-height: 150px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            margin-bottom: 13px;
+                            margin-bottom: 10px;
                         ">
-                            <div style="font-size: 2.5em; margin-bottom: 13px;">{status_icon}</div>
-                            <div style="font-size: 1.4em; font-weight: 700; color: #1e293b;">{device_name}</div>
-                            <div style="font-size: 1.0em; color: #666; margin-top: 7px; text-transform: capitalize;">{status}</div>
+                            <div style="font-size: 2em; margin-bottom: 10px;">{status_icon}</div>
+                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">{device_name}</div>
+                            <div style="font-size: 0.9em; color: #666; margin-top: 5px; text-transform: capitalize;">{status}</div>
                         </div>
                     """, unsafe_allow_html=True)
                     
@@ -381,19 +379,19 @@ elif st.session_state['page'] == 'classroom':
                     st.markdown("""
                         <div style="
                             background-color: #e7f3ff;
-                            border: 3px dashed #1e293b;
-                            border-radius: 13px;
-                            padding: 35px 20px;
+                            border: 3px dashed #007bff;
+                            border-radius: 10px;
+                            padding: 40px 20px;
                             text-align: center;
-                            min-height: 200px;
+                            min-height: 150px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            margin-bottom: 13px;
+                            margin-bottom: 10px;
                         ">
-                            <div style="font-size: 3.5em; color: #1e293b; margin-bottom: 10px;">+</div>
-                            <div style="font-size: 1.5em; font-weight: 700; color: #1e293b;">Add New Device</div>
+                            <div style="font-size: 3em; color: #007bff; margin-bottom: 10px;">+</div>
+                            <div style="font-size: 1.2em; font-weight: bold; color: #007bff;">Add New Device</div>
                         </div>
                     """, unsafe_allow_html=True)
                     
@@ -403,7 +401,7 @@ elif st.session_state['page'] == 'classroom':
 
 # ADD DEVICE PAGE
 elif st.session_state['page'] == 'add_device':
-    st.title("Add New Device")
+    st.title("➕ Add New Device")
     
     selected_classroom = st.session_state.get('selected_classroom')
     
@@ -432,7 +430,7 @@ elif st.session_state['page'] == 'add_device':
             if device_name and access_id and access_key and device_id and api_endpoint:
                 try:
                     add_device(device_name, selected_classroom['id'], access_id, access_key, device_id, api_endpoint)
-                    st.success(f"Device '{device_name}' added successfully!")
+                    st.success(f"✅ Device '{device_name}' added successfully!")
                     time.sleep(1)
                     st.session_state['page'] = 'classroom'
                     st.rerun()
@@ -461,7 +459,7 @@ elif st.session_state['page'] == 'dashboard':
     with col2:
         st.title(f"💡 {selected_device['name']}")
     with col3:
-        if st.button("Delete Device", width='stretch'):
+        if st.button("🗑️ Delete Device", width='stretch'):
             try:
                 if selected_device['id'] in st.session_state['stop_events']:
                     st.session_state['stop_events'][selected_device['id']].set()
@@ -477,7 +475,7 @@ elif st.session_state['page'] == 'dashboard':
     st.divider()
     
 # SIDEBAR
-    st.sidebar.header("Device Control")
+    st.sidebar.header("⚙️ Device Control")
     
     try:
         result = request("GET", "/v1.0/token", {"grant_type": 1}, None, 
@@ -493,41 +491,40 @@ elif st.session_state['page'] == 'dashboard':
             token_info
         )
         
-        if switch_state is not None:
-            col1, col2 = st.sidebar.columns(2)
-            if col1.button("🟢 Turn ON", width='stretch', disabled=(switch_state == True)):
-                success, actual_code = set_device_switch(True, selected_device['device_id'], selected_device['access_id'], 
-                                selected_device['access_key'], selected_device['api_endpoint'], token_info,
-                                selected_device.get('switch_code', 'switch'))
-                if success:
-                    if actual_code != selected_device.get('switch_code'):
-                        update_device_switch_code(selected_device['id'], actual_code)
-                        selected_device['switch_code'] = actual_code
-                    st.sidebar.success("Device turned ON")
-                    time.sleep(1)
-                    st.rerun()
-            
-            if col2.button("🔴 Turn OFF", width='stretch', disabled=(switch_state == False)):
-                success, actual_code = set_device_switch(False, selected_device['device_id'], selected_device['access_id'], 
-                                selected_device['access_key'], selected_device['api_endpoint'], token_info,
-                                selected_device.get('switch_code', 'switch'))
-                if success:
-                    if actual_code != selected_device.get('switch_code'):
-                        update_device_switch_code(selected_device['id'], actual_code)
-                        selected_device['switch_code'] = actual_code
-                    st.sidebar.warning("Device turned OFF")
-                    time.sleep(1)
-                    st.rerun()
-            
-            status_color = "🟢" if switch_state else "🔴"
-            status_text = "ON" if switch_state else "OFF"
-            st.sidebar.metric("Current Status", f"{status_color} {status_text}")
+        col1, col2 = st.sidebar.columns(2)
+        if col1.button("🟢 Turn ON", width='stretch', disabled=(switch_state == True)):
+            success, actual_code = set_device_switch(True, selected_device['device_id'], selected_device['access_id'], 
+                            selected_device['access_key'], selected_device['api_endpoint'], token_info,
+                            selected_device.get('switch_code', 'switch'))
+            if success:
+                if actual_code != selected_device.get('switch_code'):
+                    update_device_switch_code(selected_device['id'], actual_code)
+                    selected_device['switch_code'] = actual_code
+                st.sidebar.success("Device turned ON")
+                time.sleep(1)
+                st.rerun()
+        
+        if col2.button("🔴 Turn OFF", width='stretch', disabled=(switch_state == False)):
+            success, actual_code = set_device_switch(False, selected_device['device_id'], selected_device['access_id'], 
+                            selected_device['access_key'], selected_device['api_endpoint'], token_info,
+                            selected_device.get('switch_code', 'switch'))
+            if success:
+                if actual_code != selected_device.get('switch_code'):
+                    update_device_switch_code(selected_device['id'], actual_code)
+                    selected_device['switch_code'] = actual_code
+                st.sidebar.warning("Device turned OFF")
+                time.sleep(1)
+                st.rerun()
+        
+        status_color = "🟢" if switch_state else "🔴"
+        status_text = "ON" if switch_state else "OFF"
+        st.sidebar.metric("Current Status", f"{status_color} {status_text}")
     except:
         st.sidebar.error("Unable to connect to device")
     
     st.sidebar.divider()
     
-    st.sidebar.header("Data View")
+    st.sidebar.header("📊 Data View")
     range_option = st.sidebar.selectbox(
         "Select Time Range", 
         ["Last Hour", "Last 24 Hours", "Last 7 Days", "Last 30 Days", "Custom Range"],
@@ -553,7 +550,7 @@ elif st.session_state['page'] == 'dashboard':
     
     st.sidebar.divider()
     
-    st.sidebar.header("Cost Settings")
+    st.sidebar.header("💰 Cost Settings")
     unit_cost_input = st.sidebar.number_input(
         "Cost per kWh (BDT)", 
         min_value=1.00, 
@@ -616,7 +613,7 @@ elif st.session_state['page'] == 'dashboard':
     
     total_cost = total_kwh * unit_cost_input
     
-    st.subheader("Real-Time Metrics")
+    st.subheader("⚡ Real-Time Metrics")
     metric_cols = st.columns(4)
     
     with metric_cols[0]:
@@ -630,7 +627,7 @@ elif st.session_state['page'] == 'dashboard':
     
     st.divider()
     
-    st.subheader("Cost Analysis")
+    st.subheader("💰 Cost Analysis")
     cost_cols = st.columns(4)
     
     with cost_cols[0]:
@@ -653,24 +650,23 @@ elif st.session_state['page'] == 'dashboard':
     st.divider()
     
     if not df_filtered.empty:
-        st.subheader("Power Consumption Over Time")
+        st.subheader("📈 Power Consumption Over Time")
         chart_df = df_filtered.set_index('timestamp')[['power']].dropna()
         if not chart_df.empty:
             st.line_chart(chart_df, height=400)
-            
-        st.subheader("Current Over Time")
-        current_df = df_filtered.set_index('timestamp')[['current']].dropna()
-        if not current_df.empty:
-            st.line_chart(current_df, height=400)
         
-        st.subheader("Voltage Over Time")
+        st.subheader("🔌 Voltage Over Time")
         voltage_df = df_filtered.set_index('timestamp')[['voltage']].dropna()
         if not voltage_df.empty:
             st.line_chart(voltage_df, height=400)
         
+        st.subheader("⚡ Current Over Time")
+        current_df = df_filtered.set_index('timestamp')[['current']].dropna()
+        if not current_df.empty:
+            st.line_chart(current_df, height=400)
         
         if range_option in ["Last 7 Days", "Last 30 Days"] or (range_option == "Custom Range" and days > 1):
-            st.subheader("Daily Summary")
+            st.subheader("📊 Daily Summary")
             if not df_sorted.empty and 'energy_kwh_interval' in df_sorted.columns:
                 daily_energy = df_sorted.groupby(df_sorted['timestamp'].dt.date)['energy_kwh_interval'].sum()
                 daily_summary = pd.DataFrame({
@@ -681,7 +677,7 @@ elif st.session_state['page'] == 'dashboard':
                 daily_summary = daily_summary.sort_values('Date', ascending=False)
                 st.dataframe(daily_summary, width='stretch', hide_index=True)
         
-        with st.expander("Detailed Statistics"):
+        with st.expander("📊 Detailed Statistics"):
             stat_cols = st.columns(3)
             with stat_cols[0]:
                 st.metric("Avg Power", f"{df_filtered['power'].mean():.2f} W")
@@ -696,7 +692,7 @@ elif st.session_state['page'] == 'dashboard':
                 st.metric("Max Current", f"{df_filtered['current'].max():.3f} A")
                 st.metric("Min Current", f"{df_filtered['current'].min():.3f} A")
         
-        st.subheader("Raw Data Readings")
+        st.subheader("📋 Raw Data Readings")
         display_df = df_filtered[['timestamp', 'power', 'voltage', 'current']].sort_values('timestamp', ascending=False)
         display_df['timestamp'] = display_df['timestamp'].dt.strftime('%Y-%m-%d %H:%M:%S')
         st.dataframe(display_df.head(100), width='stretch', hide_index=True)
@@ -704,18 +700,18 @@ elif st.session_state['page'] == 'dashboard':
         st.divider()
         export_col1, export_col2 = st.columns([3, 1])
         with export_col1:
-            st.caption(f"Export data for {selected_device['name']}")
+            st.caption(f"📥 Export data for {selected_device['name']}")
         with export_col2:
             csv = df_filtered.to_csv(index=False)
             st.download_button(
-                "⬇Download CSV", 
+                "⬇️ Download CSV", 
                 csv, 
                 file_name=f"energy_{selected_device['name'].replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.csv",
                 mime="text/csv",
                 width='stretch'
             )
     else:
-        st.info("No data available yet. The system is collecting readings in the background.")
+        st.info("📊 No data available yet. The system is collecting readings in the background.")
     
     if auto_refresh:
         time.sleep(60)
